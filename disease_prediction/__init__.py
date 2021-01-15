@@ -21,6 +21,7 @@ app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USERNAME'] = os.environ.get('DB_USER')
 app.config['MAIL_PASSWORD'] = os.environ.get('DB_PASS')
+
 mail = Mail(app)
 app.register_blueprint(errors)
 
