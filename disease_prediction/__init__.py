@@ -8,7 +8,7 @@ from disease_prediction.errors.handlers import errors
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') #'969630f86f766c8e25e96af01954c069'  
+app.config['SECRET_KEY'] = '969630f86f766c8e25e96af01954c069'  
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 
 db = SQLAlchemy(app)
