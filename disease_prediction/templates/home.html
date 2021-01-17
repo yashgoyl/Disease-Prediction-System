@@ -86,7 +86,7 @@
 
         </div>
         <div class="col float-left">
-            <h1 class="text-left mt-3 mx-0 font-weight-bolder">Disease Predictor</h1>
+            <h1 class="text-left mt-3 mx-0 font-weight-bolder text-success">Disease Predictor</h1>
         </div>
     </div>
     {% if feedback == "True" %}
@@ -99,7 +99,7 @@
     {% endif %}
     <br>
 
-    <div class="card bg-gradient-info">
+    <div class="bg-gradient-info">
         <h4 class="text-center p-3 font-italic" style="color:#0099ff;">To insure good health eat lightly ,breath deeply , live moderately,cultivate cheerfulness , and maintain an interest in life.</h4>
     </div>
 
@@ -107,7 +107,7 @@
     
     <br>
 
-    <div class="card text-center">
+    <div class="text-center">
         <div class="card-header">
             Disease Prediction based on Symptoms
         </div>
@@ -125,6 +125,9 @@
         <div class="card-footer text-muted">
             Please do share this website to the Needy!
         </div>
+        <br>
+        <br>
+        <br>
     </div>
 
     <br><br>
@@ -135,6 +138,26 @@
     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+    <script>
+        const options = {
+            bottom: '64px', // default: '32px'
+            right: '32px', // default: '32px'
+            left: 'unset', // default: 'unset'
+            time: '0.3s', // default: '0.3s'
+            mixColor: '#fff', // default: '#fff'
+            backgroundColor: '#fff',  // default: '#fff'
+            buttonColorDark: '#100f2c',  // default: '#100f2c'
+            buttonColorLight: '#fff', // default: '#fff'
+            saveInCookies: true, // default: true,
+            label: '🌓', // default: ''
+            autoMatchOsTheme: true // default: true
+            }
+
+            const darkmode = new Darkmode(options);
+            darkmode.showWidget();
+    </script>
+
 </body>
 
 </html>

@@ -110,7 +110,7 @@
 
         </div>
         <div class="col float-left">
-            <h1 class="text-left mt-3 mx-0 font-weight-bolder">Disease Prediction System</h1>
+            <h1 class="text-left mt-3 mx-0 font-weight-bolder text-success">Disease Prediction System</h1>
         </div>
     </div>
 
@@ -140,10 +140,10 @@
 
     <form action="{{ url_for('Disease') }}" method="POST">
 
-        <div class="container ">
+        <div class="container text-danger">
             <div id="first" class="f1">
                 <div class="container bg-light">
-                    <div class="row ">
+                    <div class="row">
                         <div class="col-xl">
                             <div class="custom-control custom-checkbox checkbox-lg">
 
@@ -1334,6 +1334,25 @@
         document.getElementById("third").addEventListener("click", function() {
             document.querySelector(".f4").style.display = "inline";
         });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+    <script>
+        const options = {
+            bottom: '64px', // default: '32px'
+            right: '32px', // default: '32px'
+            left: 'unset', // default: 'unset'
+            time: '0.3s', // default: '0.3s'
+            mixColor: '#fff', // default: '#fff'
+            backgroundColor: '#fff',  // default: '#fff'
+            buttonColorDark: '#100f2c',  // default: '#100f2c'
+            buttonColorLight: '#fff', // default: '#fff'
+            saveInCookies: true, // default: true,
+            label: '🌓', // default: ''
+            autoMatchOsTheme: true // default: true
+            }
+
+            const darkmode = new Darkmode(options);
+            darkmode.showWidget();
     </script>
 </body>
 
