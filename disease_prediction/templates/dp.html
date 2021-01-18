@@ -56,6 +56,20 @@
         .custom-control-input {
             margin-left: -15px;
         }
+        @media only screen and (min-width: 480px) and (min-device-width: 480px) {
+            .image {
+                margin-left: 200px;
+            }
+            .disease1 {
+                margin-right: 200px;
+            }
+            .disease2 {
+                margin-right: 200px;
+            }
+            .disease3 {
+                margin-right: 200px;
+            }
+        }
     </style>
 
 </head>
@@ -104,15 +118,15 @@
 
 
     <br>
-    <div class="row grid-row d-flex align-items-center justify-content-center">
-        <div class="d-flex flex-column">
-            <img src="https://i.ibb.co/X2knc8z/logo.png" class="img-fluid float-right mx-auto align-self-center" alt="Responsive image" style="width: 200px; height:200px;">
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-4 d-flex justify-content-center">
+            <img src="https://i.ibb.co/X2knc8z/logo.png" class="img-fluid image" alt="Responsive image" style="width: 200px; height:200px;">
             <!--<img src="https://prod.lumenogic.com/jhchs/media/clientLogo.png" class="img-fluid float-right mx-0" alt="Responsive image" style="width: 150px; height:100px;">-->
         </div>
-        <div class="d-flex flex-column">
-            <h1 class="text-left mt-3 mx-0 font-weight-bolder font-italic text-success align-self-center">Disease</h1>
-            <h1 class="text-left mt-0 mx-0 font-weight-bold font-italic text-success align-self-center">Prediction</h1>
-            <h1 class="text-left mt-0 mx-0 font-weight-bolder font-italic text-success align-self-center">System</h1>
+        <div class="col-sm-4">
+            <h1 class="font-weight-bolder font-italic text-success d-flex justify-content-center disease1">Disease</h1>
+            <h1 class="font-weight-bold font-italic text-success d-flex justify-content-center disease2">Prediction</h1>
+            <h1 class="font-weight-bolder font-italic text-success d-flex justify-content-center disease3">System</h1>
         </div>
     </div>
 

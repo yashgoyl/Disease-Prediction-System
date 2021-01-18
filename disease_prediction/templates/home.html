@@ -26,6 +26,20 @@
                 display: none;
             }
         }
+        @media only screen and (min-width: 480px) and (min-device-width: 480px) {
+            .image {
+                margin-left: 200px;
+            }
+            .disease1 {
+                margin-right: 200px;
+            }
+            .disease2 {
+                margin-right: 200px;
+            }
+            .disease3 {
+                margin-right: 200px;
+            }
+        }
     </style>
 </head>
 
@@ -80,15 +94,15 @@
     {% endwith %}
     {% block content %}{% endblock %}
     <br>
-    <div class="row ">
-        <div class="col-md-6 col-xs-6">
-            <img src="https://i.ibb.co/X2knc8z/logo.png" class="img-fluid float-right mx-0" alt="Responsive image" style="width: 200px; height:200px;">
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-4 d-flex justify-content-center">
+            <img src="https://i.ibb.co/X2knc8z/logo.png" class="img-fluid image" alt="Responsive image" style="width: 200px; height:200px;">
             <!--<img src="https://prod.lumenogic.com/jhchs/media/clientLogo.png" class="img-fluid float-right mx-0" alt="Responsive image" style="width: 150px; height:100px;">-->
         </div>
-        <div class="col-md-6 col-xs-6">
-            <h1 class="text-left mt-3 mx-0 font-weight-bolder font-italic text-success">Disease</h1>
-            <h1 class="text-left mt-0 mx-0 font-weight-bold font-italic text-success">Prediction</h1>
-            <h1 class="text-left mt-0 mx-0 font-weight-bolder font-italic text-success">System</h1>
+        <div class="col-sm-4">
+            <h1 class="font-weight-bolder font-italic text-success d-flex justify-content-center disease1">Disease</h1>
+            <h1 class="font-weight-bold font-italic text-success d-flex justify-content-center disease2">Prediction</h1>
+            <h1 class="font-weight-bolder font-italic text-success d-flex justify-content-center disease3">System</h1>
         </div>
     </div>
     {% if feedback == "True" %}
