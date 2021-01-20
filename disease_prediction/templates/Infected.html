@@ -22,7 +22,7 @@
             justify-content: center;
             width: 90%;
             overflow: hidden;
-            transition: 10x;
+            transition: 10s;
         }
 
         .form {
@@ -38,7 +38,7 @@
         }
 
         .sub {
-            margin-top: 20%;
+            margin-top: 90px;
             position: relative;
         }
 
@@ -60,6 +60,7 @@
         .rating {
             position: absolute;
             left: 50%;
+            transform: translate(-50%, 0);
             margin-left: 0px;
             display: flex;
             flex-direction: row-reverse;
@@ -75,8 +76,7 @@
 
         .rating label {
             position: relative;
-            left: -50%;
-            width: 80px;
+            width: 70%;
             height: 120px;
             cursor: pointer;
             transition: 0.5s;
@@ -89,7 +89,6 @@
         .rating input:hover + label,
         .rating input:checked + label{
             opacity: 1;
-            width: 80px;
             filter: grayscale(0);
         }
 
