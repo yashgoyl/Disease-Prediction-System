@@ -106,6 +106,41 @@ def Disease():
         #         return render_template("NonInfected.htm")
     return render_template("dp.html")
 
+def send_reset_email(user):
+    token = user.get_reset_token()
+    msg = Message('Password Reset Request',
+                  sender='yashgoyalg400@gmail.com',
+                  recipients=[user.email])
+    msg.body = f'''To reset your password, visit the following link:
+{url_for('reset_token', token=token, _external=True)}
+If you did not make this request then simply ignore this email and no changes will be made.
+'''
+    mail.send(msg)
+
+@app.route('/confirm_mail', methods=['GET', 'POST'])
+def confirm_mail(user):
+    token = user.get_reset_token()
+    msg = Message('Email Confirmation on Predict Genics',
+                  sender='yashgoyalg400@gmail.com',
+                  recipients=[user.email])
+    msg.body = f'''Confirm your email address,
+
+Thank you for signing up for Predict Genics!
+
+To confirm your account, visit the following link:
+{url_for('confirm_token', token=token, _external=True)}
+If you did not make this request then simply ignore this email and no changes will be made.
+'''
+    mail.send(msg)
+
+@app.route("/email_confirmed/<token>", methods=['GET', 'POST'])
+def confirm_token(token):
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    db.session.add(a)
+    db.session.commit()
+    flash('Your account has been created! You are now able to log in', 'success')
+    return render_template('mail_confirmed.html')
 
 @app.route('/register', methods=['GET','POST'])
 def register():
@@ -115,9 +150,12 @@ def register():
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user = User(username=form.username.data, email=form.email.data, password=hashed_password)
-        db.session.add(user)
-        db.session.commit()
-        flash('Your account has been created! You are now able to log in', 'success')
+        # db.session.add(user)
+        # db.session.commit()
+        global a 
+        a = user
+        confirm_mail(user)
+        flash('We have sent an email to '+user.email+'. Click on the link provided to finish signing up.', 'info')
         return redirect(url_for('login')) #home is the function of the route
     return render_template('register.html', title='Register', form=form)
 
@@ -160,18 +198,6 @@ def account():
     return render_template('account.html', title='Account', form=form)
 
 
-def send_reset_email(user):
-    token = user.get_reset_token()
-    msg = Message('Password Reset Request',
-                  sender='yashgoyalg400@gmail.com',
-                  recipients=[user.email])
-    msg.body = f'''To reset your password, visit the following link:
-{url_for('reset_token', token=token, _external=True)}
-If you did not make this request then simply ignore this email and no changes will be made.
-'''
-    mail.send(msg)
-
-
 @app.route("/reset_password", methods=['GET', 'POST'])
 def reset_request():
     if current_user.is_authenticated:
@@ -189,6 +215,7 @@ def reset_token(token):
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     user = User.verify_reset_token(token)
+    print(user)
     if user is None:
         flash('That is an invalid or expired token', 'warning')
         return redirect(url_for('reset_request'))
