@@ -133,14 +133,7 @@ If you did not make this request then simply ignore this email and no changes wi
 '''
     mail.send(msg)
 
-@app.route("/email_confirmed/<token>", methods=['GET', 'POST'])
-def confirm_token(token):
-    if current_user.is_authenticated:
-        return redirect(url_for('home'))
-    db.session.add(a)
-    db.session.commit()
-    flash('Your account has been created! You are now able to log in', 'success')
-    return render_template('mail_confirmed.html')
+a = ''
 
 @app.route('/register', methods=['GET','POST'])
 def register():
@@ -159,6 +152,14 @@ def register():
         return redirect(url_for('login')) #home is the function of the route
     return render_template('register.html', title='Register', form=form)
 
+@app.route("/email_confirmed/<token>", methods=['GET', 'POST'])
+def confirm_token(token):
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    db.session.add(a)
+    db.session.commit()
+    flash('Your account has been created! You are now able to log in', 'success')
+    return render_template('mail_confirmed.html')
 
 @app.route('/login', methods=['GET','POST'])
 def login():
