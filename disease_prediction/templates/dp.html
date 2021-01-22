@@ -82,6 +82,39 @@
                 margin-right: 200px;
             }
         }
+
+        q::before,
+        q::after {
+        animation: dancing 1s linear infinite;
+        display: inline-block;
+        transform: rotate(13deg);
+        }
+
+        @keyframes dancing {
+        0% {
+            transform: rotate(13deg) scale(2);
+        }
+
+        25% {
+            transform: rotate(0deg);
+        }
+
+        50% {
+            transform: rotate(-13deg) scale(2);
+        }
+
+        75% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(13deg) scale(2);
+        }
+        }
+        q {
+        quotes: "“" "”";
+        }
+
     </style>
 
 </head>
@@ -129,19 +162,11 @@
 
 
     <br>
-    <div class="row d-flex justify-content-center">
-        <div class="col-sm-4 d-flex justify-content-center">
-            <img src="https://i.ibb.co/X2knc8z/logo.png" class="img-fluid image" alt="Responsive image" style="width: 200px; height:200px;">
-            <!--<img src="https://prod.lumenogic.com/jhchs/media/clientLogo.png" class="img-fluid float-right mx-0" alt="Responsive image" style="width: 150px; height:100px;">-->
-        </div>
-        <div class="col-sm-4">
-            <h1 class="font-weight-bolder font-italic text-success d-flex justify-content-center disease1">Disease</h1>
-            <h1 class="font-weight-bold font-italic text-success d-flex justify-content-center disease2">Prediction</h1>
-            <h1 class="font-weight-bolder font-italic text-success d-flex justify-content-center disease3">System</h1>
-        </div>
+    <div class="container">
+    <div class="bg-gradient-info">
+        <blockquote class="text-center p-3 font-italic h4 mt-3" style="color:#7B7B7B;"><q>Health is a state of complete mental, social and physical well-being, not merely the absence of disease or infirmity.</blockquote>
     </div>
-
-
+    </div>
 
     <br>
     <h2 class="text-center font-weight-bold">Mark all the symptoms you are experiencing</h2>

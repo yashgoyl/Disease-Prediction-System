@@ -139,6 +139,66 @@
             transform: translateY(0px) scale(1);
             opacity: 1;
         }
+
+        .curly {
+            animation: curly 1s linear infinite;
+            transform: rotate(0eg);
+        }
+
+        @keyframes curly {
+        0% {
+            transform: rotate(0deg) scale(1.3);
+        }
+
+        25% {
+            transform: rotate(0deg);
+        }
+
+        50% {
+            transform: rotate(0deg) scale(1.3);
+        }
+
+        75% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(0deg) scale(1.3);
+        }
+        }
+
+        q::before,
+        q::after {
+        animation: dancing 1s linear infinite;
+        display: inline-block;
+        transform: rotate(13deg);
+        }
+
+        @keyframes dancing {
+        0% {
+            transform: rotate(13deg) scale(2);
+        }
+
+        25% {
+            transform: rotate(0deg);
+        }
+
+        50% {
+            transform: rotate(-13deg) scale(2);
+        }
+
+        75% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(13deg) scale(2);
+        }
+        }
+        q {
+        quotes: "“" "”";
+        }
+
     </style>
 </head>
 
@@ -194,16 +254,23 @@
     {% block content %}{% endblock %}
     <br>
 
-    <div class="row d-flex justify-content-center">
+    <!--<div class="row d-flex justify-content-center">
         <div class="col-sm-4 d-flex justify-content-center">
             <img src="https://i.ibb.co/X2knc8z/logo.png" class="img-fluid image" alt="Responsive image" style="width: 200px; height:200px;">
             <!--<img src="https://prod.lumenogic.com/jhchs/media/clientLogo.png" class="img-fluid float-right mx-0" alt="Responsive image" style="width: 150px; height:100px;">-->
-        </div>
+       <!-- </div>
         <div class="col-sm-4">
             <h1 class="font-weight-bolder font-italic text-success d-flex justify-content-center disease1">Disease</h1>
             <h1 class="font-weight-bold font-italic text-success d-flex justify-content-center disease2">Prediction</h1>
             <h1 class="font-weight-bolder font-italic text-success d-flex justify-content-center disease3">System</h1>
         </div>
+    </div>-->
+    <div class="container">
+    <div class="d-flex justify-content-center align-items-center overflow-hidden" style="color: #8B4513;">
+        <h1 class="col-sm display-1 curly">{</h1>
+        <h3 class="col-sm font-weight-normal font-italic" style="line-height: 1cm;">Predict Genics is a disease prediction system which will help early prediction of harmful diseases.</h3>
+        <h1 class="col-sm display-1 curly">}</h1>
+    </div>
     </div>
     
     {% if feedback == "True" %}
@@ -216,9 +283,7 @@
     {% endif %}
     <br>
 
-    <div class="bg-gradient-info">
-        <h4 class="text-center p-3 font-italic" style="color:#706f6d;">"It is health that is the real wealth, and not pieces of gold and silver" - Mahatma Gandhi</h4>
-    </div>
+    
 
     </div>
     
@@ -238,6 +303,9 @@
             {% else %}
                 <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg track">Track Now</a>
             {% endif %}
+            <div class="bg-gradient-info">
+                <blockquote class="text-center p-3 font-italic h4 mt-3" style="color:#7B7B7B;"><q>It is health that is the real wealth, and not pieces of gold and silver.</q><h4 class="mt-1" style="font-family: cursive; color:#BC8F8F;"> - Mahatma Gandhi</h4></blockquote>
+            </div>
         </div>
         <div class="card-footer text-muted" style="font-family: fantasy;">
             Please do share this website to the Needy!
