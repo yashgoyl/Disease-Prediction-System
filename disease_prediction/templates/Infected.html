@@ -105,6 +105,33 @@
             transform: translateY(0px) scale(1);
             opacity: 1;
         }
+
+        .danger {
+            animation: danger 1s linear infinite;
+            transform: rotate(0eg);
+        }
+
+        @keyframes danger {
+        0% {
+            transform: rotate(0deg) scale(1.5);
+        }
+
+        25% {
+            transform: rotate(0deg);
+        }
+
+        50% {
+            transform: rotate(0deg) scale(1.5);
+        }
+
+        75% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(0deg) scale(1.5);
+        }
+        }
     </style>
 </head>
 
@@ -149,7 +176,9 @@
     </nav>
     
     <div class="" style="isolation: isolate;">
-        <h5 class="card-header text-center text-danger font-weight-bold" style="background-color: #3e3e3e;">Danger</h5>
+        <div class="card-header text-center text-danger" style="background-color: #3e3e3e;">
+            <h5 class="danger font-weight-bold">Danger</h5>
+        </div>
         <div class="card-body">
             <h5 class="card-title text-danger text-center">You maybe suffering from <h3 class="text-white bg-danger mx-auto text-center font-weight-bold font-italic" style="width: max-content; text-transform: uppercase; margin-bottom: 10px; padding: 10px;">{{ disease }}</h3></h5>
             <p class="card-text text-center text-warning">Please contact nearest hospitals</p>

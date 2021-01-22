@@ -199,6 +199,19 @@
         quotes: "“" "”";
         }
 
+        .blink {
+        animation: blink 0.5s infinite;
+        }
+        @keyframes blink{
+        to { opacity: .0; }
+        }
+
+        .header-sub-title {
+        font-family: Roboto;
+        font-size: 24px;
+        padding: 0.1em;
+        }
+
     </style>
 </head>
 
@@ -265,13 +278,39 @@
             <h1 class="font-weight-bolder font-italic text-success d-flex justify-content-center disease3">System</h1>
         </div>
     </div>-->
+    
     <div class="container">
     <div class="d-flex justify-content-center align-items-center overflow-hidden" style="color: #8B4513;">
         <h1 class="col-sm display-1 curly">{</h1>
-        <h3 class="col-sm font-weight-normal font-italic" style="line-height: 1cm;">Predict Genics is a disease prediction system which will help early prediction of harmful diseases.</h3>
+        <!--<h3 class="col-sm font-weight-normal font-italic" style="line-height: 1cm;">Predict Genics is a disease prediction system which will help early prediction of harmful diseases.</h3>-->
+        <div class="d-flex">
+            <p class="header-sub-title" id="word"></p>
+        </div>
         <h1 class="col-sm display-1 curly">}</h1>
     </div>
     </div>
+
+    <script>
+        const words = ["Predict Genics is a disease prediction system which will help early prediction of harmful diseases."];
+        let i = 0;
+        let timer;
+
+        function typingEffect() {
+            let word = words[i].split("");
+            var loopTyping = function() {
+                if (word.length > 0) {
+                    document.getElementById('word').innerHTML += word.shift();
+                } else {
+                    deletingEffect();
+                    return false;
+                };
+                timer = setTimeout(loopTyping, 80);
+            };
+            loopTyping();
+        };
+
+        typingEffect();
+    </script>
     
     {% if feedback == "True" %}
     <div id="alert" class="container">
