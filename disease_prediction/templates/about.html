@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <title>About Us</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        nav {
+            z-index: 1;
+        }
+
+        .body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            background: #161623;
+            min-height: 100vh; 
+            margin-top: -30px; 
+        }
+
+        section {
+            position: relative;
+        }
+
+
+        .container {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .para {
+            text-align: justify;
+            text-justify: inter-word;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            text-transform: ititial;
+            color: #fff;
+            position: relative;
+            opacity: 1;
+            margin: 3rem;
+            width: 70vw;
+        }
+
+        .heading {
+            text-transform: uppercase;
+            font-size: 3.5rem;
+            letter-spacing: 3px;
+            margin-right: -3px;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            color: #45e19f;
+            position: relative;
+            opacity: 0.8;
+        }
+
+        .heading::after {
+            content: "";
+            width: 10rem;
+            height: .8rem;
+            background-color: #45e19f;
+            opacity: 0.6;
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2rem;
+        }
+
+        .container .card {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            background: rgba(255,255,255,0.05);
+            margin: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .container .card .content {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            opacity: 0.5;
+            transition: 0.5s;
+        }
+
+        .container .card:hover .content {
+            opacity: 1;
+            transform: translateY(-20px);
+        }
+
+        .container .card .content .imgBx {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 10px solid rgba(0,0,0,0.25);
+        }
+
+        .container .card .content .imgBx img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .container .card .content .contentBx h3{
+            color: #fff;
+            text-transform: uppercase;
+            Letter-spacing: 2px;
+            font-weight: 500;
+            font-size: 18px;
+            text-align: center;
+            margin: 20px 0 10px;
+            line-height: 1.1em;
+        }
+
+        .container .card .content .contentBx h3 span{
+            font-size: 12px;
+            font-weight: 300;
+            text-transform: initial;
+        }
+
+        .container .card .sci {
+            position: absolute;
+            bottom: 50px;
+            display: flex;
+        }
+
+        .container .card .sci li {
+            list-style: none;
+            margin: 0 10px;
+            transform: translateY(40px);
+            transition: 0.5s;
+            opacity: 0;
+            transition-delay: calc(0.1s * var(--i));
+        }
+
+        .container .card:hover .sci li {
+            transform: translateY(0px);
+            opacity: 1;
+        }
+
+        .container .card .sci li a {
+            color: #fff;
+            font-size: 24px;
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info"> <!--"navbar navbar-toggleable-md navbar-light bg-danger"-->
+        <a class="navbar-brand text-dark" href="{{ url_for('index') }}">Predict Genics</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-dark active" href="{{ url_for('index') }}">Home <span
+                            class=" sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="{{ url_for('about') }}">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="#">Contact Us</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="{{ url_for('account') }}">Account</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="{{ url_for('logout') }}">Logout</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="{{ url_for('login') }}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="{{ url_for('register') }}">Register</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <br>
+    <section class="body">
+        
+        <p class="para">Nowadays, people face a variety of diseases due to their living habits and changing
+        environmental conditions. It could have happened before you or anyone near you needed urgent
+        assistance from the doctor, but you couldn't locate anyone. It is beneficial to get quick and
+        adequate medical facilities for patients by developing a model that can predict diseases based on
+        user symptoms. Many lives can be saved by the correct review of data and accurately predicting
+        diseases from symptoms. But it becomes too difficult for a doctor to predict accurately based on
+        symptoms. The most difficult task is the accurate prediction of disease. As generally said,
+        "Prevention is better than cure," disease prediction and infectious outbreak will contribute to
+        early prevention of a disease occurrence. A significant amount of data growth per year is seen in
+        the healthcare industry. The accurate analysis of medical data will extract information to
+        anticipate diseases that will happen to a patient in the future by using the medical data. With the
+        aid of disease data, machine learning algorithms find hidden pattern knowledge in an enormous
+        amount of medical data.</p>
+       
+        <h1 class="heading">Meet The Team</h1>
+        <div class="container">
+            <div class="card">
+                <div class="content">
+                    <div class="imgBx"><img src="https://drive.google.com/uc?id=14XlbDzLS4Rtv0tVULMp5OEL0I-_DyaeS"></div>
+                    <div class="contentBx">
+                        <h3><span>Business Technology Analyst</span></h3>
+                    </div>
+                </div>
+                <ul class="sci">
+                    <li style="--i:1">
+                        <a href="https://github.com/yash-rai22/" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i:2">
+                        <a href="https://www.linkedin.com/in/yash-rai-9a29711a0/" target="_blank"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i:3">
+                        <a href="https://www.instagram.com/yas.h_22/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></i></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="content">
+                    <div class="imgBx"><img src="https://drive.google.com/uc?id=1Oq5oXS6nWVpTcPu2tK5HSf5A-hOcYFzE"></div>
+                    <div class="contentBx">
+                        <h3><span>Software Engineer</span></h3>
+                    </div>
+                </div>
+                <ul class="sci">
+                    <li style="--i:1">
+                        <a href="https://github.com/Devilyash/" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i:2">
+                        <a href="https://www.linkedin.com/in/yash-goyal16/" target="_blank"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i:3">
+                        <a href="https://www.instagram.com/devil.yash16/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></i></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="content">
+                    <div class="imgBx"><img src="https://drive.google.com/uc?id=1fGWmf2xxli26DROvQda0S9-swx1U5mLw"></div>
+                    <div class="contentBx">
+                        <h3><span>Business Technology Analyst</span></h3>
+                    </div>
+                </div>
+                <ul class="sci">
+                    <li style="--i:1">
+                        <a href="https://github.com/Achal08" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i:2">
+                        <a href="https://www.linkedin.com/in/achal-vaidya-4a083a14b/" target="_blank"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i:3">
+                        <a href="https://www.instagram.com/achalvaidya/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+</body>
+</html>

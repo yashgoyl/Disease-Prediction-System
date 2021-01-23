@@ -62,13 +62,13 @@ def submit():
     if current_user.is_authenticated and request.method=='POST':
         email = current_user.email
         val = request.form.get('emoji')
-        return redirect('mailto:yashgoyalg400@gmail.com,yashrai2201@gmail.com,achal.v123@gmail.com?subject='+'Feedback of Predict Genics from '+str(email)+'&body='+'Hello,\nMy overall experience over your website was '+str(val)+'.')
+        return redirect('mailto:yashgoyalg400@gmail.com,achal.v123@gmail.com,yashrai2201@gmail.com?subject='+'Feedback of Predict Genics from '+str(email)+'&body='+'Hello,\nMy overall experience over your website was '+str(val)+'.')
     else:
         return redirect(url_for('login'))
 
 @app.route('/about')
 def about():
-    return render_template('home.html')
+    return render_template('about.html')
 
 @app.route("/diseaseprediction", methods=["POST", "GET"])
 def Disease():
