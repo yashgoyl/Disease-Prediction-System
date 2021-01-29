@@ -93,7 +93,7 @@ def Disease():
         print(symptoms)
         predictionDT = decisionTreeModel.predict([symptoms])
         if predictionDT:
-            return render_template("Infected.html", disease=disease[predictionDT[0]])
+            return render_template("Infected.html", disease=predictionDT[0])
         else:
             return render_template("NonInfected.html")
         # if len(symptoms) < 5 or len(symptoms) > 8:
