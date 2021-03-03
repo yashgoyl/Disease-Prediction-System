@@ -149,7 +149,10 @@ def Disease():
 
 @app.route("/precations", methods=["POST", "GET"])
 def Precautions():
-    return render_template('precautions.html', precaution=precautions[predictionDT[0]])
+    if predictionDT:
+        return render_template('precautions.html', precaution=precautions[predictionDT[0]])
+    else:
+        return render_template("dp.html")
 
 def send_reset_email(user):
     token = user.get_reset_token()
