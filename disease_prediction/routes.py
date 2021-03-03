@@ -113,6 +113,8 @@ def submit():
 def about():
     return render_template('about.html')
 
+predictionDT = []
+
 @app.route("/diseaseprediction", methods=["POST", "GET"])
 def Disease():
 
@@ -137,16 +139,17 @@ def Disease():
         if len(inputs) < 3 or len(inputs) > 8:
             flash("Please Select symptoms only between 3 and 8 Inclusive")
         else:
-            Disease.predictionDT = decisionTreeModel.predict([symptoms])
-            if Disease.predictionDT:
-                return render_template("Infected.html", disease=Disease.predictionDT[0])
+            global predictionDT
+            predictionDT = decisionTreeModel.predict([symptoms])
+            if predictionDT:
+                return render_template("Infected.html", disease=predictionDT[0])
             else:
                 return render_template("NonInfected.html")
     return render_template("dp.html")
 
 @app.route("/precations", methods=["POST", "GET"])
 def Precautions():
-    return render_template('precautions.html', precaution=precautions[Disease.predictionDT[0]])
+    return render_template('precautions.html', precaution=precautions[predictionDT[0]])
 
 def send_reset_email(user):
     token = user.get_reset_token()
