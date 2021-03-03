@@ -38,8 +38,8 @@ header = ['itching','skin_rash','nodal_skin_eruptions','continuous_sneezing','sh
  'yellow_crust_ooze']
 
 disease = ['Fungal infection', 'Allergy', 'GERD', 'Chronic cholestasis',
-       'Drug Reaction', 'Peptic ulcer diseae', 'AIDS', 'Diabetes ',
-       'Gastroenteritis', 'Bronchial Asthma', 'Hypertension ', 'Migraine',
+       'Drug Reaction', 'Peptic ulcer diseae', 'AIDS', 'Diabetes',
+       'Gastroenteritis', 'Bronchial Asthma', 'Hypertension', 'Migraine',
        'Cervical spondylosis', 'Paralysis (brain hemorrhage)', 'Jaundice',
        'Malaria', 'Chicken pox', 'Dengue', 'Typhoid', 'hepatitis A',
        'Hepatitis B', 'Hepatitis C', 'Hepatitis D', 'Hepatitis E',
@@ -50,6 +50,49 @@ disease = ['Fungal infection', 'Allergy', 'GERD', 'Chronic cholestasis',
        '(vertigo) Paroymsal  Positional Vertigo', 'Acne',
        'Urinary tract infection', 'Psoriasis', 'Impetigo']
 
+precautions = {
+    'Fungal infection': ['bath twice', 'use detol or neem in bathing water', 'keep infected area dry', 'use clean cloths'],
+     'Allergy': ['apply calamine', 'cover area with bandage', 'Anti-inflammatory medication', 'use ice to compress itching'],
+      'GERD': ['avoid fatty spicy food', 'avoid lying down after eating','maintain healthy weight', 'exercise'],
+       'Chronic cholestasis': ['cold baths','anti itch medicine','consult doctor','eat healthy'],
+       'Drug Reaction': ['stop irritation','consult nearest hospital','stop taking drug','follow up'],
+        'Peptic ulcer diseae': ['avoid fatty spicy food 	consume probiotic food 	eliminate milk 	limit alcohol'],
+         'AIDS': ['avoid open cuts','wear ppe if possible','consult doctor','follow up'], 
+         'Diabetes': ['have balanced diet','exercise','consult doctor','follow up'],
+         'Gastroenteritis': ['stop eating solid food for while','try taking small sips of water','rest','ease back into eating'],
+        'Bronchial Asthma': ['switch to loose cloothing','take deep breaths','get away from trigger','seek help'],
+         'Hypertension': ['meditation','salt baths','reduce stress','get proper sleep'],
+          'Migraine': ['meditation','reduce stress','use poloroid glasses in sun','consult doctor'],
+       'Cervical spondylosis': ['use heating pad or cold pack', 'exercise', 'take otc pain reliver', 'consult doctor'],
+        'Paralysis (brain hemorrhage)': ['massage', 'eat healthy', 'exercise', 'consult doctor'],
+         'Jaundice': ['drink plenty of water','consume milk thistle','eat fruits and high fiberous food','medication'],
+       'Malaria': ['Consult nearest hospital','avoid oily food','avoid non veg food','keep mosquitos out'],
+        'Chicken pox': ['use neem in bathing','consume neem leaves','take vaccine','avoid public places'],
+         'Dengue': ['drink papaya leaf juice','avoid fatty spicy food','keep mosquitos away','keep hydrated'], 
+         'Typhoid': ['eat high calorie vegitables','antiboitic therapy','consult doctor','medication'],
+          'hepatitis A': ['Consult nearest hospital','wash hands through','avoid fatty spicy food','medication'],
+       'Hepatitis B': ['consult nearest hospital','vaccination','eat healthy','medication'],
+        'Hepatitis C': ['Consult nearest hospital','vaccination','eat healthy','medication'],
+         'Hepatitis D': ['consult doctor','medication','eat healthy','follow up'],
+          'Hepatitis E': ['stop alcohol consumption','rest','consult doctor','medication'],
+       'Alcoholic hepatitis': ['stop alcohol consumption','consult doctor','medication','follow up'],
+        'Tuberculosis': ['cover mouth','consult doctor','medication','rest'],
+         'Common Cold': ['drink vitamin c rich drinks','take vapour','avoid cold food','keep fever in check'],
+          'Pneumonia': ['consult doctor','medication','rest','follow up'],
+       'Dimorphic hemmorhoids(piles)': ['avoid fatty spicy food','consume witch hazel','warm bath with epsom salt','consume alovera juice'],
+        'Heart attack': ['call ambulance','chew or swallow asprin','keep calm','Eat a healthy diet'],
+         'Varicose veins': ['lie down flat and raise the leg high','use oinments','use vein compression','dont stand still for long'],
+       'Hypothyroidism': ['reduce stress','exercise','eat healthy','get proper sleep'],
+       'Hyperthyroidism': ['eat healthy','massage','use lemon balm','take radioactive iodine treatment'], 
+       'Hypoglycemia': ['lie down on side','check in pulse','drink sugary drinks','consult doctor'],
+       'Osteoarthristis': ['acetaminophen','consult nearest hospital','follow up','salt baths'],
+        'Arthritis': ['exercise','use hot and cold therapy','try acupuncture','massage'],
+       '(vertigo) Paroymsal  Positional Vertigo': ['lie down','avoid sudden change in body','avoid abrupt head movment','relax'],
+        'Acne': ['bath twice','avoid fatty spicy food','drink plenty of water','avoid too many products'],
+       'Urinary tract infection': ['drink plenty of water','increase vitamin c intake','drink cranberry juice','take probiotics'],
+        'Psoriasis': ['wash hands with warm soapy water','stop bleeding using pressure','consult doctor','salt baths'],
+         'Impetigo': ['soak affected area in warm water','use antibiotics','remove scabs with wet compressed cloth','consult doctor']
+}
 # DiseasePred = joblib.load(open('disease_predictor.pkl','rb'))
 
 
@@ -84,27 +127,26 @@ def Disease():
         for key, value in rf.items():
             # print(key)
             inputs.append(value)
-        print(inputs)
 
         for element in range(0, len(header)):
             for symptom in inputs:
                 if symptom == header[element]:
                     symptoms[element] = 1
-        print(symptoms)
-        predictionDT = decisionTreeModel.predict([symptoms])
-        if predictionDT:
-            return render_template("Infected.html", disease=predictionDT[0])
+                    
+    
+        if len(inputs) < 3 or len(inputs) > 8:
+            flash("Please Select symptoms only between 3 and 8 Inclusive")
         else:
-            return render_template("NonInfected.html")
-        # if len(symptoms) < 5 or len(symptoms) > 8:
-        #     flash("Please Select symptoms only between 5 and 8 Inclusive")
-        # else:
-        #     prediction = decisionTreeModel.predict([symptoms])
-        #     if prediction:
-        #         return render_template("Infected.htm", disease=prediction)
-        #     else:
-        #         return render_template("NonInfected.htm")
+            Disease.predictionDT = decisionTreeModel.predict([symptoms])
+            if Disease.predictionDT:
+                return render_template("Infected.html", disease=Disease.predictionDT[0])
+            else:
+                return render_template("NonInfected.html")
     return render_template("dp.html")
+
+@app.route("/precations", methods=["POST", "GET"])
+def Precautions():
+    return render_template('precautions.html', precaution=precautions[Disease.predictionDT[0]])
 
 def send_reset_email(user):
     token = user.get_reset_token()

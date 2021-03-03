@@ -29,3 +29,8 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email}')"
+
+
+#Postgresql command for restarting the index
+# ALTER SEQUENCE seq RESTART WITH 1;
+# UPDATE foo SET id = DEFAULT;

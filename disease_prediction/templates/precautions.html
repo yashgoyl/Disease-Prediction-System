@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Infected</title>
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+        .form-actions {
+            margin: 0;
+            background-color: transparent;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            transition: 10s;
+        }
+
+        .form {
+            margin: 30px;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            font-size: 40px;
+            font-family: 'Oswald', sans-serif;
+            user-select: none;
+            text-transform: uppercase;
+        }
+
+        .sub {
+            margin-top: 90px;
+            position: relative;
+        }
+
+        .sub input {
+            font-size: 20px;
+            width: 200px;
+            height: 50px;
+            border-radius: 50px;
+            background: linear-gradient(90deg, #755bea, #ff72c0);
+            border: 3px solid #fff;
+            color: #f2f2f2;
+            font-family: 'Trade Winds', cursive;
+        }
+
+        .sub input:hover {
+            background: #755bea;
+        }
+
+        .rating {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, 0);
+            display: flex;
+            flex-direction: row-reverse;
+        }
+
+        .rating input {
+            display: none;
+        }
+
+        .rating label img{
+            width: 50px;
+        }
+
+        .rating label {
+            position: relative;
+            height: 120px;
+            cursor: pointer;
+            transition: 0.5s;
+            filter: grayscale(1);
+            text-align: center;
+            opacity: 0.3;
+        }
+
+
+        .rating input:hover + label,
+        .rating input:checked + label{
+            opacity: 1;
+            filter: grayscale(0);
+        }
+
+        label h4{
+            font-size: 14px;
+            font-weight: 500;
+            color: #706f6d;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateY(-50px) scale(0);
+            padding-top: 0px;
+            transition: 0.5s;
+        }
+
+        .rating input:hover + label h4,
+        .rating input:checked + label h4 {
+            transform: translateY(0px) scale(1);
+            opacity: 1;
+        }
+
+        .danger {
+            animation: danger 1s linear infinite;
+            transform: rotate(0eg);
+        }
+
+    
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info"> <!--"navbar navbar-toggleable-md navbar-light bg-danger"-->
+        <a class="navbar-brand text-dark" href="{{ url_for('index') }}">Predict Genics</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-dark active" href="{{ url_for('index') }}">Home <span
+                            class=" sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="{{ url_for('about') }}">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="#">Contact Us</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="{{ url_for('account') }}">Account</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="{{ url_for('logout') }}">Logout</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="{{ url_for('login') }}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="{{ url_for('register') }}">Register</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="" style="isolation: isolate;">
+        <div class="card-header text-center text-white" style="background-color: #3e3e3e;">
+            <h5 class="danger font-weight-bold">Follow these Precautions</h5>
+        </div>
+        <div class="card-body">
+            <h6 class="text-white bg-success mx-auto text-center font-weight-bold font-italic" style="width: max-content; text-transform: uppercase; margin-bottom: 10px; padding: 10px;">1. {{ precaution[0] }}</h6>
+            <h6 class="text-white bg-success mx-auto text-center font-weight-bold font-italic" style="width: max-content; text-transform: uppercase; margin-bottom: 10px; padding: 10px;">2. {{ precaution[1] }}</h6>
+            <h6 class="text-white bg-success mx-auto text-center font-weight-bold font-italic" style="width: max-content; text-transform: uppercase; margin-bottom: 10px; padding: 10px;">3. {{ precaution[2] }}</h6>
+            <h6 class="text-white bg-success mx-auto text-center font-weight-bold font-italic" style="width: max-content; text-transform: uppercase; margin-bottom: 10px; padding: 10px;">4. {{ precaution[3] }}</h6>
+        </div>
+    </div>
+
+    <div class="card-footer text-muted text-center" style="font-family: fantasy;">
+            Please do share this website to the Needy!
+    </div>
+
+    <div class="container">
+        <form method="POST" action="{{ url_for('submit') }}">
+            <div class="form">
+                <h2>Send Feedback</h2>
+                <div class="rating">
+                    <input type="radio" name="emoji" id="emoji1" value="Satisfactory" checked>
+                    <label for="emoji1">
+                        <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMjsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHBhdGggc3R5bGU9ImZpbGw6IzMwM0M0MjsiIGQ9Ik00NzkuMjQ1LDIxOC44NThDNDcxLjA2NSw5NS42NDYsMzY5LjcwMiwwLDI0NS4zMzMsMEMxMTUuOTM4LDAsMTAuNjY3LDEwNS4yNzEsMTAuNjY3LDIzNC42NjcNCglzMTA1LjI3MSwyMzQuNjY3LDIzNC42NjcsMjM0LjY2N2MzMC42OTMsMCw2MS4wNDItNi4xNzIsODkuMjA4LTE3LjcyOGMtMi40OCw1LjQwNC0zLjg3NSwxMS40MDQtMy44NzUsMTcuNzI4DQoJYzAsMTEuNDE3LDQuNDQ4LDIyLjEyNSwxMi41MjEsMzAuMTg4YzguMDUyLDguMDQyLDE4Ljc1LDEyLjQ3OSwzMC4xMjUsMTIuNDc5YzAuMDEsMCwwLjAzMSwwLDAuMDUyLDBsNTMuMzY1LTAuMDQyDQoJYzQxLjEzNS0wLjAyMSw3NC42MDQtMzMuNTIxLDc0LjYwNC03NC42NjdWMjU2QzUwMS4zMzMsMjM5Ljk3NSw0OTIuMzQ4LDIyNi4xNTEsNDc5LjI0NSwyMTguODU4eiIvPg0KPHBhdGggc3R5bGU9ImZpbGw6I0ZFRDYwMDsiIGQ9Ik0zMiwyMzQuNjY3YzAtMTE3LjYyNSw5NS42OTgtMjEzLjMzMywyMTMuMzMzLTIxMy4zMzNjMTEwLjc1LDAsMjAxLjM4NSw4My40MjgsMjEyLjA1MiwxOTIuMTI5DQoJQzQzNC40NTgsMjE0LjE1OCw0MTYsMjMyLjkxOCw0MTYsMjU2djQyLjY2N2gtMjQuMzQ0YzAuODM3LTIuNzUxLDIuMDU3LTUuNDE3LDIuNzE5LTguMTg4YzAuNzYtMy4xODgsMC4wMjEtNi41MjEtMi05LjA4Mw0KCWMtMi4wMzEtMi41NjMtNS4xMTUtNC4wNjMtOC4zNzUtNC4wNjNIMTA2LjY2N2MtMy4yNiwwLTYuMzQ0LDEuNS04LjM2NSw0LjA0MmMtMi4wMjEsMi41NjMtMi43NzEsNS44OTYtMi4wMjEsOS4wODMNCgljMTUuNzI5LDY2LjU2Myw3OC40MDYsMTE0Ljg3NSwxNDkuMDUyLDExNC44NzVjMzQuOTc3LDAsNjkuNzg2LTEyLjU2NCw5Ny4zNTItMzQuNjY4YzAuODM3LDAuODc1LDEuNTUyLDEuODY2LDIuNDYxLDIuNjY4DQoJYy04Ljg3NSw3LjgzMy0xNC40NzksMTkuMjcxLTE0LjQ3OSwzMmMwLDcuOTQsMi4zNzYsMTUuMjQ5LDYuMTY5LDIxLjYyMkMzMDguMzY3LDQ0MC41MDMsMjc3LjExMyw0NDgsMjQ1LjMzMyw0NDgNCglDMTI3LjY5OCw0NDgsMzIsMzUyLjI5MiwzMiwyMzQuNjY3eiIvPg0KPHBhdGggc3R5bGU9ImZpbGw6I0I3MjAyNTsiIGQ9Ik0zMzAuNjY3LDM0MS4zMzNjMCwzLjYwMiwwLjU1Miw3LjA1MywxLjM5NiwxMC4zOTZjLTIuNTkxLDIuMTk1LTUuMjQyLDQuMjk3LTcuOTg3LDYuMjg1DQoJYy0yMS44MzctMTcuNTI3LTUyLjU4Ny0yMS45MTEtNzguNzQyLTkuMjIzYy0yNi4xNTktMTIuNzI3LTU3LjAyLTguMjY4LTc4Ljg5MSw5LjM4MmMtMjAuNTk0LTE0LjkzOS0zNi44MTMtMzUuNDE4LTQ1LjQ5NS01OS41MDcNCgloMjQ4LjcyOWMtMC4wNDcsMC4xMy0wLjEwNSwwLjI1NS0wLjE1MiwwLjM4NUMzNDcuODAxLDMwMS4wMTQsMzMwLjY2NywzMTkuMTE2LDMzMC42NjcsMzQxLjMzM3oiLz4NCjxwYXRoIHN0eWxlPSJvcGFjaXR5OjAuMTtmaWxsOiMwMTAxMDE7ZW5hYmxlLWJhY2tncm91bmQ6bmV3ICAgIDsiIGQ9Ik0xNzUuMDI1LDMxMy44MjdIMzQxYzcuMDYtOC4xOTEsMTcuMTE2LTEzLjc0NSwyOC41MjUtMTQuNzc1DQoJYzAuMDQ3LTAuMTMsMC4xMDUtMC4yNTUsMC4xNTItMC4zODVIMTIwLjk0OGM4LjY4MiwyNC4wODksMjQuOTAxLDQ0LjU2OCw0NS40OTUsNTkuNTA3YzAuMDk5LTAuMDc5LDAuMjExLTAuMTM3LDAuMzEtMC4yMTYNCgljLTMuMTk1LTMuMjkxLTYuMjI2LTYuNzMzLTkuMDY4LTEwLjMyMkMxNDYuODksMzM0LjAwOCwxNTcuNjQxLDMxMy44MjcsMTc1LjAyNSwzMTMuODI3eiIvPg0KPHBhdGggc3R5bGU9ImZpbGw6I0U1M0EzNTsiIGQ9Ik0zMDQuMTAyLDM3MC4wNzhDMjg1Ljc4OCwzNzkuMDU5LDI2NS41OTIsMzg0LDI0NS4zMzMsMzg0Yy0yMC45NzcsMC00MS4xMjgtNC45My01OS4wODktMTMuNzE0DQoJYzE1Ljk1NC05LjQwMiwzNi4zMDEtMTAuMzE1LDUzLjcyNC0wLjIwM2MzLjMxMywxLjk1OCw3LjQxNywxLjk1OCwxMC43MjksMEMyNjguMDA0LDM2MC4wMzgsMjg4LjIxMiwzNjAuODU1LDMwNC4xMDIsMzcwLjA3OHoiLz4NCjxwYXRoIHN0eWxlPSJmaWxsOiNGRUQ2MDA7IiBkPSJNNDgwLDQzNy4yOTJjMCwyOS4zOTYtMjMuOTA2LDUzLjMxMy01My4yOTIsNTMuMzMzbC01My4zNjUsMC4wNDJjMCwwLTAuMDIxLDAtMC4wMzEsMA0KCWMtNS42NzcsMC0xMS4wMzEtMi4yMDgtMTUuMDUyLTYuMjI5Yy00LjA0Mi00LjA0Mi02LjI2LTkuMzk2LTYuMjYtMTUuMTA0YzAtMTEuNzcxLDkuNTczLTIxLjMzMywyMS4zMzMtMjEuMzMzSDM4NA0KCWM1Ljg5NiwwLDEwLjY2Ny00Ljc3MSwxMC42NjctMTAuNjY3cy00Ljc3MS0xMC42NjctMTAuNjY3LTEwLjY2N2gtMTAuNjY3Yy0xMS43NiwwLTIxLjMzMy05LjU2My0yMS4zMzMtMjEuMzMzDQoJUzM2MS41NzMsMzg0LDM3My4zMzMsMzg0SDM4NGM1Ljg5NiwwLDEwLjY2Ny00Ljc3MSwxMC42NjctMTAuNjY3cy00Ljc3MS0xMC42NjctMTAuNjY3LTEwLjY2N2gtMTAuNjY3DQoJYy0xMS43NiwwLTIxLjMzMy05LjU2My0yMS4zMzMtMjEuMzMzUzM2MS41NzMsMzIwLDM3My4zMzMsMzIwSDQ0OGM1Ljg5NiwwLDEwLjY2Ny00Ljc3MSwxMC42NjctMTAuNjY3cy00Ljc3MS0xMC42NjctMTAuNjY3LTEwLjY2Nw0KCWgtMTAuNjY3VjI1NmMwLTExLjc3MSw5LjU3My0yMS4zMzMsMjEuMzMzLTIxLjMzM2MxMS43NiwwLDIxLjMzMyw5LjU2MywyMS4zMzMsMjEuMzMzVjQzNy4yOTJ6Ii8+DQo8cGF0aCBzdHlsZT0ib3BhY2l0eTowLjE7ZmlsbDojMDEwMTAxO2VuYWJsZS1iYWNrZ3JvdW5kOm5ldyAgICA7IiBkPSJNNDU4LjY2NywyMzQuNjY3djE4MS4yOTINCgljMCwyOS4zOTYtMjMuOTA2LDUzLjMxMy01My4yOTIsNTMuMzMzbC01My4zNjUsMC4wNDJIMzUyYzAsNS43MDgsMi4yMTksMTEuMDYzLDYuMjYsMTUuMTA0YzQuMDIxLDQuMDIxLDkuMzc1LDYuMjI5LDE1LjA1Miw2LjIyOQ0KCWMwLjAxLDAsMC4wMzEsMCwwLjAzMSwwbDUzLjM2NS0wLjA0MkM0NTYuMDk0LDQ5MC42MDQsNDgwLDQ2Ni42ODgsNDgwLDQzNy4yOTJWMjU2QzQ4MCwyNDQuMjI5LDQ3MC40MjcsMjM0LjY2Nyw0NTguNjY3LDIzNC42Njd6Ig0KCS8+DQo8Zz4NCgk8Y2lyY2xlIHN0eWxlPSJmaWxsOiMzMDNDNDI7IiBjeD0iMzMwLjY2NyIgY3k9IjE3MC42NjciIHI9IjIxLjMzMyIvPg0KCTxjaXJjbGUgc3R5bGU9ImZpbGw6IzMwM0M0MjsiIGN4PSIxNjAiIGN5PSIxNzAuNjY3IiByPSIyMS4zMzMiLz4NCjwvZz4NCjxnPg0KCTxwYXRoIHN0eWxlPSJvcGFjaXR5OjAuMTtmaWxsOiMwMTAxMDE7ZW5hYmxlLWJhY2tncm91bmQ6bmV3ICAgIDsiIGQ9Ik00NTcuMzg1LDIxMy40NjJjLTAuNTk4LTYuMDk0LTEuNTMxLTEyLjA3OS0yLjYyMS0xOC4wMDQNCgkJYy0wLjE2NS0wLjg4NS0wLjI3MS0xLjc5LTAuNDQ4LTIuNjcyYy0wLjk0NS00Ljc5OS0yLjE4LTkuNDgzLTMuNDM4LTE0LjE1NmMtMC43MDMtMi41NjktMS4zNzYtNS4xNS0yLjE3Mi03LjY3OA0KCQljLTEuMDk0LTMuNTM2LTIuMzI4LTcuMDA1LTMuNTk2LTEwLjQ1N2MtMS40NzQtMy45NDctMy4wMjYtNy44NTQtNC43MjMtMTEuNjg2Yy0wLjk0MS0yLjE1NC0xLjg4Ny00LjMwNS0yLjg5NS02LjQxOQ0KCQljLTIuODUtNS44OTgtNS44Ny0xMS42OTktOS4yMzMtMTcuMjgxYy0wLjA3LTAuMTE3LTAuMTMzLTAuMjQxLTAuMjAzLTAuMzU4Yy0xMS42Mi0xOS4yMDYtMjYuMTc4LTM2LjQ0LTQzLjA0Ni01MS4wODYNCgkJYzMyLjUwNywzNy40NCw1Mi4zMjIsODYuMTkzLDUyLjMyMiwxMzkuNjY5YzAsMi4wOTktMC4yNTQsNC4xMzMtMC4zMTQsNi4yMTdDNDQzLjA0OCwyMTUuOTc4LDQ0OS45MzEsMjEzLjY4OSw0NTcuMzg1LDIxMy40NjJ6Ii8+DQoJPHBhdGggc3R5bGU9Im9wYWNpdHk6MC4xO2ZpbGw6IzAxMDEwMTtlbmFibGUtYmFja2dyb3VuZDpuZXcgICAgOyIgZD0iTTI2OS4zNTQsNDQ2LjU2MWMyMy40MTgtMi43NjcsNDYuMjI4LTkuNDkyLDY3LjQ4Mi0xOS42MDUNCgkJYy0zLjc5My02LjM3NC02LjE2OS0xMy42ODItNi4xNjktMjEuNjIyYzAtMi43MzcsMC4zNzgtNS4zNzYsMC44NzItNy45N2MtMzEuNjAzLDE4LjUwOS02OC4yNzEsMjkuMzAzLTEwNy41MzksMjkuMzAzDQoJCWMtNTMuMjU3LDAtMTAxLjgxMS0xOS42NzMtMTM5LjE5LTUxLjk0M2MwLjYxNiwwLjcwNCwxLjI2MywxLjM4LDEuODg4LDIuMDc3YzMuNzM0LDQuMTY0LDcuNTg5LDguMjE0LDExLjYzMywxMi4wNzYNCgkJYzEuNDQ4LDEuMzc5LDIuOTUzLDIuNjk1LDQuNDM5LDQuMDM1YzMuODE5LDMuNDQ4LDcuNzQyLDYuNzc5LDExLjgwMiw5Ljk0OGMxLjgyNywxLjQyNCwzLjY5MSwyLjc5OSw1LjU2Niw0LjE2NQ0KCQljMy44ODksMi44MzksNy44ODIsNS41NCwxMS45NjIsOC4xMTZjMi4xODUsMS4zNzYsNC4zODMsMi43MjgsNi42MjEsNC4wMjZjMy45NjEsMi4zMDIsOC4wMjMsNC40MzgsMTIuMTQxLDYuNDg3DQoJCWMyLjQ4MiwxLjIzMyw0Ljk1NiwyLjQ3OCw3LjQ5MSwzLjYxNWM0LjA3MywxLjgzMiw4LjI1NCwzLjQ1NiwxMi40NTgsNS4wMzRjMi42OTgsMS4wMTIsNS4zNywyLjA3NCw4LjExOCwyLjk3OA0KCQljNC4zMDMsMS40MTUsOC43MTYsMi41NzMsMTMuMTM1LDMuNzE2YzIuNzU4LDAuNzEyLDUuNDczLDEuNTI5LDguMjcyLDIuMTMyYzQuODUsMS4wNDcsOS44MTQsMS43NjgsMTQuNzgzLDIuNDc4DQoJCWMyLjQ2OSwwLjM1Myw0Ljg4OCwwLjg2Myw3LjM4NCwxLjEzYzcuNTA0LDAuODAyLDE1LjExMSwxLjI2NCwyMi44MjksMS4yNjRjNy45MjEsMCwxNS44MDYtMC40NywyMy42MjYtMS4zNzkNCgkJQzI2OS4wOTIsNDQ2LjYwNywyNjkuMjIxLDQ0Ni41NzYsMjY5LjM1NCw0NDYuNTYxeiIvPg0KPC9nPg0KPGxpbmVhckdyYWRpZW50IGlkPSJTVkdJRF8xXyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSItNDUuMTY5OCIgeTE9IjY0MC4xMzc1IiB4Mj0iLTIxLjQwOTMiIHkyPSI2MjkuMDU3NyIgZ3JhZGllbnRUcmFuc2Zvcm09Im1hdHJpeCgyMS4zMzMzIDAgMCAtMjEuMzMzMyA5OTYuMzMzNCAxMzc5MS42NjcpIj4NCgk8c3RvcCAgb2Zmc2V0PSIwIiBzdHlsZT0ic3RvcC1jb2xvcjojRkZGRkZGO3N0b3Atb3BhY2l0eTowLjIiLz4NCgk8c3RvcCAgb2Zmc2V0PSIxIiBzdHlsZT0ic3RvcC1jb2xvcjojRkZGRkZGO3N0b3Atb3BhY2l0eTowIi8+DQo8L2xpbmVhckdyYWRpZW50Pg0KPHBhdGggc3R5bGU9ImZpbGw6dXJsKCNTVkdJRF8xXyk7IiBkPSJNNDc5LjI0NSwyMTguODU4QzQ3MS4wNjUsOTUuNjQ2LDM2OS43MDIsMCwyNDUuMzMzLDANCglDMTE1LjkzOCwwLDEwLjY2NywxMDUuMjcxLDEwLjY2NywyMzQuNjY3czEwNS4yNzEsMjM0LjY2NywyMzQuNjY3LDIzNC42NjdjMzAuNjkzLDAsNjEuMDQyLTYuMTcyLDg5LjIwOC0xNy43MjgNCgljLTIuNDgsNS40MDQtMy44NzUsMTEuNDA0LTMuODc1LDE3LjcyOGMwLDExLjQxNyw0LjQ0OCwyMi4xMjUsMTIuNTIxLDMwLjE4OGM4LjA1Miw4LjA0MiwxOC43NSwxMi40NzksMzAuMTI1LDEyLjQ3OQ0KCWMwLjAxLDAsMC4wMzEsMCwwLjA1MiwwbDUzLjM2NS0wLjA0MmM0MS4xMzUtMC4wMjEsNzQuNjA0LTMzLjUyMSw3NC42MDQtNzQuNjY3VjI1Ng0KCUM1MDEuMzMzLDIzOS45NzUsNDkyLjM0OCwyMjYuMTUxLDQ3OS4yNDUsMjE4Ljg1OHoiLz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K" />
+                        <h4>Satifactory</h4>
+                    </label>
+                    <input type="radio" name="emoji" id="emoji2" value="Very Good">
+                    <label for="emoji2">
+                        <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMjsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPGNpcmNsZSBzdHlsZT0iZmlsbDojRkZDQTI4OyIgY3g9IjI1NiIgY3k9IjI1NiIgcj0iMjU2Ii8+DQo8Zz4NCgk8cGF0aCBzdHlsZT0iZmlsbDojNkQ0QzQxOyIgZD0iTTM5OS42OCwyMDguMzJjLTguODMyLDAtMTYtNy4xNjgtMTYtMTZjMC0xNy42MzItMTQuMzM2LTMyLTMyLTMycy0zMiwxNC4zNjgtMzIsMzINCgkJYzAsOC44MzItNy4xNjgsMTYtMTYsMTZzLTE2LTcuMTY4LTE2LTE2YzAtMzUuMjk2LDI4LjcwNC02NCw2NC02NHM2NCwyOC43MDQsNjQsNjRDNDE1LjY4LDIwMS4xODQsNDA4LjUxMiwyMDguMzIsMzk5LjY4LDIwOC4zMnoiDQoJCS8+DQoJPHBhdGggc3R5bGU9ImZpbGw6IzZENEM0MTsiIGQ9Ik0yMDcuNjgsMjA4LjMyYy04LjgzMiwwLTE2LTcuMTY4LTE2LTE2YzAtMTcuNjMyLTE0LjM2OC0zMi0zMi0zMnMtMzIsMTQuMzY4LTMyLDMyDQoJCWMwLDguODMyLTcuMTY4LDE2LTE2LDE2cy0xNi03LjE2OC0xNi0xNmMwLTM1LjI5NiwyOC43MDQtNjQsNjQtNjRzNjQsMjguNzA0LDY0LDY0QzIyMy42OCwyMDEuMTg0LDIxNi41MTIsMjA4LjMyLDIwNy42OCwyMDguMzJ6Ig0KCQkvPg0KPC9nPg0KPHBhdGggc3R5bGU9ImZpbGw6I0ZBRkFGQTsiIGQ9Ik00MzcuNjk2LDI5NC42ODhjLTMuMDQtNC03Ljc0NC02LjM2OC0xMi43MzYtNi4zNjhIODYuNGMtNS4wMjQsMC05LjcyOCwyLjMzNi0xMi43MzYsNi4zMzYNCgljLTMuMDcyLDQuMDMyLTQuMDMyLDkuMTg0LTIuNjg4LDE0LjAxNkM5NC4xMTIsMzkwLjg4LDE3MC4wOCw0NDguMzIsMjU1LjY0OCw0NDguMzJzMTYxLjUzNi01Ny40NCwxODQuNjcyLTEzOS42NDgNCglDNDQxLjY5NiwzMDMuODQsNDQwLjczNiwyOTguNjg4LDQzNy42OTYsMjk0LjY4OHoiLz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K" />
+                        <h4>Very Good</h4>
+                    </label>
+                    <input type="radio" name="emoji" id="emoji3" value="Good">
+                    <label for="emoji3">
+                        <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgdmlld0JveD0iMCAwIDQ3My45MzEgNDczLjkzMSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDczLjkzMSA0NzMuOTMxOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8Y2lyY2xlIHN0eWxlPSJmaWxsOiNGRkMxMEU7IiBjeD0iMjM2Ljk2NiIgY3k9IjIzNi45NjYiIHI9IjIzNi45NjYiLz4NCjxnPg0KCTxwYXRoIHN0eWxlPSJmaWxsOiMzMzMzMzM7IiBkPSJNMzgzLjE2NCwyMzcuMTIzYy0xLjMzMiw4MC42OTktNjUuNTE0LDE0NC44NzMtMTQ2LjIxMywxNDYuMjA2DQoJCWMtODAuNzAyLDEuMzMyLTE0NC45MDctNjcuNTItMTQ2LjIwNi0xNDYuMjA2Yy0wLjE5OC0xMi4wNTItMTguOTA3LTEyLjA3MS0xOC43MDksMGMxLjUsOTAuOTIxLDczLjk5MywxNjMuNDE0LDE2NC45MTQsMTY0LjkxNA0KCQljOTAuOTI5LDEuNSwxNjMuNDU1LTc2LjI1LDE2NC45MjItMTY0LjkxNEM0MDIuMDcxLDIyNS4wNTIsMzgzLjM2MiwyMjUuMDcxLDM4My4xNjQsMjM3LjEyM0wzODMuMTY0LDIzNy4xMjN6Ii8+DQoJPGNpcmNsZSBzdHlsZT0iZmlsbDojMzMzMzMzOyIgY3g9IjE2NC45MzciIGN5PSIxNTUuMjI3IiByPSIzNy4yMTYiLz4NCgk8Y2lyY2xlIHN0eWxlPSJmaWxsOiMzMzMzMzM7IiBjeD0iMzA1LjY2NCIgY3k9IjE1NS4yMjciIHI9IjM3LjIxNiIvPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPC9zdmc+DQo=" />
+                        <h4>Good</h4>
+                    </label>
+                    <input type="radio" name="emoji" id="emoji4" value="Not Good">
+                    <label for="emoji4">
+                        <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMjsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPGNpcmNsZSBzdHlsZT0iZmlsbDojRkZEOTNCOyIgY3g9IjI1NiIgY3k9IjI1NiIgcj0iMjU2Ii8+DQo8cGF0aCBzdHlsZT0iZmlsbDojRjRDNTM0OyIgZD0iTTUxMiwyNTZjMCwxNDEuNDQtMTE0LjY0LDI1Ni0yNTYsMjU2Yy04MC40OCwwLTE1Mi4zMi0zNy4xMi0xOTkuMjgtOTUuMjgNCgljNDMuOTIsMzUuNTIsOTkuODQsNTYuNzIsMTYwLjcyLDU2LjcyYzE0MS4zNiwwLDI1Ni0xMTQuNTYsMjU2LTI1NmMwLTYwLjg4LTIxLjItMTE2LjgtNTYuNzItMTYwLjcyDQoJQzQ3NC44LDEwMy42OCw1MTIsMTc1LjUyLDUxMiwyNTZ6Ii8+DQo8Zz4NCgk8cGF0aCBzdHlsZT0iZmlsbDojM0U0MzQ3OyIgZD0iTTMzMi40MzIsMzg0LjhjMCw3LjQ3Mi01Ljk2OCwxMy4zMjgtMTMuMzI4LDEzLjMyOEgxOTIuOTEyYy03LjM2LDAtMTMuMzI4LTUuODcyLTEzLjMyOC0xMy4zMjgNCgkJYzAtNy4zNiw1Ljk2OC0xMy4zMjgsMTMuMzI4LTEzLjMyOGgxMjYuMTkyQzMyNi40NDgsMzcxLjQ3MiwzMzIuNDMyLDM3Ny40NCwzMzIuNDMyLDM4NC44eiIvPg0KCTxwYXRoIHN0eWxlPSJmaWxsOiMzRTQzNDc7IiBkPSJNMTExLjgwOCwyNjEuNjhjNi4yNTYtMy42OCwyNC43NjgsMTYuMTYsNTMuODQsMTcuMjQ4YzMwLjA5NiwxLjEyLDQ3LjU4NC0yMC45MjgsNTMuODQtMTcuMjQ4DQoJCWM3Ljc5MiwyLjY3Mi0yLjgzMiw1My41NTItNTMuODQsNTMuNzQ0QzExNC42NTYsMzE1LjIzMiwxMDQuMDE2LDI2NC4zNTIsMTExLjgwOCwyNjEuNjh6Ii8+DQo8L2c+DQo8cGF0aCBzdHlsZT0iZmlsbDojRTlCMDJDOyIgZD0iTTk5LjgwOCwyMzkuMzEyYy01LjgwOC0wLjkyOC05Ljc3Ni02LjQtOC44MzItMTIuMjI0YzAuOTQ0LTUuODA4LDYuMzItOS43OTIsMTIuMjI0LTguODMyDQoJYzU5Ljk2OCw5LjYzMiw3OC4xOTItMzMuMiw3OC4zNjgtMzMuNjMyYzIuMjA4LTUuNDU2LDguNDE2LTguMDgsMTMuOTA0LTUuODU2YzUuNDU2LDIuMjI0LDguMDgsOC40NDgsNS44NTYsMTMuOTA0DQoJQzE4OS4yOTYsMjIyLjE0NCwxNTEuNTA0LDI0Ny42MTYsOTkuODA4LDIzOS4zMTJ6Ii8+DQo8cGF0aCBzdHlsZT0iZmlsbDojM0U0MzQ3OyIgZD0iTTQwMC4xOTIsMjYxLjY4Yy02LjI1Ni0zLjY4LTI0Ljc2OCwxNi4xNi01My44NCwxNy4yNDhjLTMwLjA5NiwxLjEyLTQ3LjU4NC0yMC45MjgtNTMuODQtMTcuMjQ4DQoJYy03Ljc5MiwyLjY3MiwyLjgzMiw1My41NTIsNTMuODQsNTMuNzQ0QzM5Ny4zNDQsMzE1LjIzMiw0MDcuOTg0LDI2NC4zNTIsNDAwLjE5MiwyNjEuNjh6Ii8+DQo8cGF0aCBzdHlsZT0iZmlsbDojRTlCMDJDOyIgZD0iTTMxMC42NzIsMTkyLjY1NmMtMi4yMjQtNS40NTYsMC40LTExLjY4LDUuODU2LTEzLjkwNGM1LjQ0LTIuMjI0LDExLjY0OCwwLjM4NCwxMy44ODgsNS44MDgNCgljMC44LDEuOTIsMTkuMTIsNDMuMjE2LDc4LjM4NCwzMy42OTZjNS44NzItMC45NiwxMS4yOTYsMy4wMjQsMTIuMjI0LDguODMyYzAuOTI4LDUuODI0LTMuMDI0LDExLjI5Ni04LjgzMiwxMi4yMjQNCglDMzYwLjg2NCwyNDcuNTY4LDMyMi44LDIyMi40LDMxMC42NzIsMTkyLjY1NnoiLz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K" />
+                        <h4>Not Good</h4>
+                    </label>
+                    <input type="radio" name="emoji" id="emoji5" value="Excellent">
+                    <label for="emoji5">
+                        <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMjsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPGNpcmNsZSBzdHlsZT0iZmlsbDojRkZEOTNCOyIgY3g9IjI1NiIgY3k9IjI1NiIgcj0iMjU2Ii8+DQo8cGF0aCBzdHlsZT0iZmlsbDojRjRDNTM0OyIgZD0iTTUxMiwyNTZjMCwxNDEuNDQtMTE0LjY0LDI1Ni0yNTYsMjU2Yy04MC40OCwwLTE1Mi4zMi0zNy4xMi0xOTkuMjgtOTUuMjgNCgljNDMuOTIsMzUuNTIsOTkuODQsNTYuNzIsMTYwLjcyLDU2LjcyYzE0MS4zNiwwLDI1Ni0xMTQuNTYsMjU2LTI1NmMwLTYwLjg4LTIxLjItMTE2LjgtNTYuNzItMTYwLjcyDQoJQzQ3NC44LDEwMy42OCw1MTIsMTc1LjUyLDUxMiwyNTZ6Ii8+DQo8cGF0aCBzdHlsZT0iZmlsbDojM0U0MzQ3OyIgZD0iTTM4OC4zNjgsMzA5LjI2NEM0MTAuODY0LDMxNS40MjQsMzc0LjgxNiw0MzUuMDQsMjU2LDQzNS45Mg0KCWMtMTE4LjgxNi0wLjg4LTE1NC44NjQtMTIwLjQ5Ni0xMzIuMzY4LTEyNi42NTZDMTQxLjYxNiwzMDAuNCwxODkuODU2LDM0OS41MiwyNTYsMzQ5LjUyDQoJQzMyMy4wNTYsMzQ5LjUwNCwzNzAuMzg0LDMwMC40LDM4OC4zNjgsMzA5LjI2NHoiLz4NCjxwYXRoIHN0eWxlPSJmaWxsOiNFMjRCNEI7IiBkPSJNMTczLjM0NCwyNTYuNzg0Yy0xLjM5MiwxLjcxMi0zLjcyOCwyLjEyOC01LjY0OCwxLjA3MmMtMTQuNC03LjU2OC03Mi4zMi00MC03Ny44NzItNzAuMTkyDQoJYy0zLjUyLTE5LjA4OCw5LjA3Mi0zNy40NCwyOC4xNi00MC45NmMxMy43Ni0yLjU2LDI3LjA4OCwzLjMxMiwzNC44OCwxNC4wOGMzLjMxMi0xMi44LDEzLjc2LTIzLjA0LDI3LjUyLTI1LjQ4OA0KCWMxOS4wODgtMy41MiwzNy4zMjgsOS4wNzIsNDAuODQ4LDI4LjE2QzIyNi43ODQsMTkzLjYzMiwxODQuMTEyLDI0NC41MTIsMTczLjM0NCwyNTYuNzg0eiIvPg0KPHBhdGggc3R5bGU9ImZpbGw6I0QwM0YzRjsiIGQ9Ik0xNzkuNDI0LDI0OS42MzJjLTIuNDQ4LDIuOTkyLTQuNTkyLDUuNDQtNi4wOCw3LjE1MmMtMS4zOTIsMS43MTItMy43MjgsMi4xMjgtNS42NDgsMS4wNzINCgljLTE0LjQtNy41NjgtNzIuMzItNDAtNzcuODcyLTcwLjE5MmMtMy4yLTE3LjE2OCw2LjYwOC0zMy43MTIsMjIuNTEyLTM5LjM2Yy04LjExMiw3Ljg4OC0xMi4yNzIsMTkuNjMyLTEwLjAzMiwzMS41NjgNCglDMTA3Ljc0NCwyMDkuNjMyLDE2My45NTIsMjQxLjUyLDE3OS40MjQsMjQ5LjYzMnoiLz4NCjxnIHN0eWxlPSJvcGFjaXR5OjAuMjsiPg0KCQ0KCQk8ZWxsaXBzZSB0cmFuc2Zvcm09Im1hdHJpeCgtMC4zNjU0IC0wLjkzMDggMC45MzA4IC0wLjM2NTQgMTE2Ljk0MSA0MDUuMzI2KSIgc3R5bGU9ImZpbGw6I0ZGRkZGRjsiIGN4PSIxOTYuNjMyIiBjeT0iMTYyLjgwMiIgcng9IjEzLjg3MSIgcnk9IjkuMzQ0Ii8+DQo8L2c+DQo8cGF0aCBzdHlsZT0iZmlsbDojRTI0QjRCOyIgZD0iTTMzMi43NTIsMjU2Ljc4NGMxLjM5MiwxLjcxMiwzLjcyOCwyLjEyOCw1LjY0OCwxLjA3MmMxNC40LTcuNTY4LDcyLjMyLTQwLDc3Ljg3Mi03MC4xOTINCgljMy41Mi0xOS4wODgtOS4wNzItMzcuNDQtMjguMTYtNDAuOTZjLTEzLjc2LTIuNTYtMjcuMDg4LDMuMzEyLTM0Ljg4LDE0LjA4Yy0zLjMxMi0xMi44LTEzLjc2LTIzLjA0LTI3LjUyLTI1LjQ4OA0KCWMtMTkuMDg4LTMuNTItMzcuMzI4LDkuMDcyLTQwLjg0OCwyOC4xNkMyNzkuMzEyLDE5My42MzIsMzIxLjk2OCwyNDQuNTEyLDMzMi43NTIsMjU2Ljc4NHoiLz4NCjxwYXRoIHN0eWxlPSJmaWxsOiNEMDNGM0Y7IiBkPSJNMzI2LjY3MiwyNDkuNjMyYzIuNDQ4LDIuOTkyLDQuNTkyLDUuNDQsNi4wOCw3LjE1MmMxLjM5MiwxLjcxMiwzLjcyOCwyLjEyOCw1LjY0OCwxLjA3Mg0KCWMxNC40LTcuNTY4LDcyLjMyLTQwLDc3Ljg3Mi03MC4xOTJjMy4yLTE3LjE2OC02LjYwOC0zMy43MTItMjIuNTEyLTM5LjM2YzguMTEyLDcuODg4LDEyLjI3MiwxOS42MzIsMTAuMDMyLDMxLjU2OA0KCUMzOTguMzUyLDIwOS42MzIsMzQyLjEyOCwyNDEuNTIsMzI2LjY3MiwyNDkuNjMyeiIvPg0KPGcgc3R5bGU9Im9wYWNpdHk6MC4yOyI+DQoJDQoJCTxlbGxpcHNlIHRyYW5zZm9ybT0ibWF0cml4KC0wLjkzMDggLTAuMzY1NCAwLjM2NTQgLTAuOTMwOCA1MzcuOTQzNiA0MjcuNDQ3OSkiIHN0eWxlPSJmaWxsOiNGRkZGRkY7IiBjeD0iMzA5LjQyIiBjeT0iMTYyLjgyIiByeD0iOS4zNDQiIHJ5PSIxMy44NzEiLz4NCjwvZz4NCjxwYXRoIHN0eWxlPSJmaWxsOiNFMjRCNEI7IiBkPSJNMjU2LDQzNS45MmMyMi45NDQtMC4xNzYsNDIuNzY4LTQuOCw1OS43MTItMTIuMTQ0Yy0zLjg0LTExLjI4LTEwLjczNi0yMS4xMi0xOS44MDgtMjguNDk2DQoJYy03LjI4LTYtMTcuMjgtNy4wODgtMjYuMjcyLTQuMTc2Yy01LjE4NCwxLjYzMi0xMS4wMDgsMi42NC0xNy40NTYsMi42NGMtNS4wMDgsMC05LjYzMi0wLjY0LTEzLjkwNC0xLjYzMg0KCWMtOS43MjgtMi40NDgtMTkuOTA0LDAuNDQ4LTI2Ljk5Miw3LjU1MmMtNi43MDQsNi43MDQtMTEuODQsMTQuOTYtMTQuOTYsMjQuMTQ0QzIxMy4yNjQsNDMxLjEzNiwyMzMuMDcyLDQzNS43NiwyNTYsNDM1LjkyeiIvPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPC9zdmc+DQo=" />
+                        <h4>Excellent</h4>
+                    </label>
+                </div>
+                <div class="sub">
+                    <input type="submit" value="Submit">
+                </div>
+                <!--<script>
+                    var emoji = document.querySelectorAll('.rating input:checked label h4');
+                    var email = document.getElementById('email').innerHTML;
+                    function sendEmail() {
+                        document.location.href = "mailto:yashgoyalg400@gmail.com?subject="
+                            + encodeURIComponent("By" + current_user.email)
+                            + "&body="encodeURIComponent("\n") + encodeURIComponent(yourMessage + " " + emoji);
+                    }
+                </script>
+                -->
+            </div>
+        </form>
+    </div>
+    <br>
+    <br>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+    <script>
+        const options = {
+            bottom: '32px', // default: '32px'
+            right: '32px', // default: '32px'
+            left: 'unset', // default: 'unset'
+            time: '0.3s', // default: '0.3s'
+            mixColor: '#fff', // default: '#fff'
+            backgroundColor: '#fff',  // default: '#fff'
+            buttonColorDark: '#100f2c',  // default: '#100f2c'
+            buttonColorLight: '#fff', // default: '#fff'
+            saveInCookies: true, // default: true,
+            label: '🌓', // default: ''
+            autoMatchOsTheme: true // default: true
+            }
+
+            const darkmode = new Darkmode(options);
+            darkmode.showWidget();
+    </script>
+</body>
+
+</html>
