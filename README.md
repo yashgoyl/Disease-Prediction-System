@@ -23,10 +23,10 @@ Disease Predictor is a flask integrated web application that helps for the predi
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Details of various datasets used for model development :
-*	Diseases & Symptoms
-  * Training :
-  * Testing :
-* Precautions :
+- Diseases & Symptoms:
+  - Training :
+  - Testing :
+- Precautions :
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### Here is the link where you can access the project live : [Click here](https://predictgenics.herokuapp.com/)
