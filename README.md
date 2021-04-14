@@ -23,9 +23,9 @@ Disease Predictor is a flask integrated web application that helps for the predi
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Details of various datasets used for model development :
-*	diseases & Symptoms
-  *Training :
-  *Testing :
+*	Diseases & Symptoms
+  * Training :
+  * Testing :
 * Precautions :
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
