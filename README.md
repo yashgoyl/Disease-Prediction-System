@@ -17,7 +17,7 @@ Disease Predictor is a flask integrated web application that helps for the predi
 
 *	HTML
 
-*	CSS
+*	Bootstrap
 
 *	MySQL
 
